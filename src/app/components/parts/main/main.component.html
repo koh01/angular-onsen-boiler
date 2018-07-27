@@ -1,0 +1,69 @@
+<ons-page>
+  <!-- toolbar -->
+  <ons-toolbar>
+    <div class="center">ボタン表示サンプル</div>
+    <div class="right">
+      <ons-toolbar-button>
+        <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <div class="background"></div>
+  <!-- contents -->
+  <div class="content">
+    <ons-list>
+      <ons-list-header>Template-driven form</ons-list-header>
+      <ons-list-item *ngFor="let color of colors; let i = index">
+        <ons-checkbox 
+          [attr.input-id]="'radio-' + i"
+          [attr.value]="color"
+          [(ngModel)]="checkedColors"
+          class="left"></ons-checkbox>
+        <label [attr.for]="'radio-' + i" class="center">
+          {{ color }}
+        </label>
+      </ons-list-item>
+      <ons-list-item id="checked-colors">
+        {{ checkedColors }}
+      </ons-list-item>
+
+      <ons-list-header>Reactive Form</ons-list-header>
+      <ons-list-item>
+        <ons-checkbox id="reactive-checkbox" class="form-control left" [formControl]="exampleControl"></ons-checkbox>
+        <div class="center" id="reactive-checked">{{ exampleControl.value ? 'Checked' : 'Not checked' }}</div>
+      </ons-list-item>
+    </ons-list>
+
+    <div style="margin: 10px">
+      <!-- range -->
+      <ons-range [(value)]="value"></ons-range>
+      <!-- search -->
+      <p><ons-search-input id="text" placeholder="Type here" [(value)]="target"></ons-search-input></p>
+      <!-- toggle -->
+      <ons-switch [value]="targetRadio" (change)="targetRadio=$event.target.checked"></ons-switch>
+      <!-- text -->
+      <p><ons-input placeholder="氏名を入力" [(value)]="targetText"></ons-input></p>
+      <!-- select -->
+      <ons-select [(ngModel)]="selectedModifier" [attr.modifier]="selectedModifier">
+        <option *ngFor="let modifier of modifiers" [value]="modifier.value">
+          {{ modifier.label }}
+        </option>
+      </ons-select>
+      <!-- fab Button -->
+      <ons-fab position="right bottom" style='margin-bottom:20px;' (click)="onClick()">
+        <ons-icon icon="md-car"></ons-icon>
+      </ons-fab>
+    </div>
+    <div style="text-align: center; margin: 10px;">
+      <ons-button (click)="onClick()">MyButton</ons-button>
+    </div>
+  </div>
+  <!-- <ons-tabbar>
+    <div class="tabbar__content"></div>
+    <div class="tabbar">
+      <ons-tab label="Page1" icon="ion-home" [page]="tab1" active></ons-tab>
+      <ons-tab label="Page2" icon="ion-ios-browsers" [page]="tab2"></ons-tab>
+      <ons-tab label="Page3" icon="ion-ios-search" [page]="tab3"></ons-tab>
+    </div>
+  </ons-tabbar> -->
+</ons-page>
